@@ -3,13 +3,20 @@
 #ifndef LED_H_INCLUIDO
 #define LED_H_INCLUIDO
 
-// ----------------------------------------------------------
-// Jordi Bataller i Mascarell
-// 2019-07-07
-// ----------------------------------------------------------
+// --------------------------------------------------------------
+//
+// Andrey Kuzmin
+// 2021-18-09
+//
+// --------------------------------------------------------------
 
 // ----------------------------------------------------------
 // ----------------------------------------------------------
+ /**
+ * La descripción de esperar. Funcion que ponbe en espera el led.
+ *
+ * @param tiempo valor long.
+ */
 void esperar (long tiempo) {
   delay (tiempo);
 }
@@ -33,6 +40,10 @@ public:
 
   // .........................................................
   // .........................................................
+   /**
+ * La descripción de encender. Funcion que enciende la placa.
+ *
+ */
   void encender () {
 	digitalWrite(numeroLED, HIGH); 
 	encendido = true;
@@ -40,6 +51,10 @@ public:
 
   // .........................................................
   // .........................................................
+   /**
+ * La descripción de apagar. Funcion que apaga la placa.
+ *
+ */
   void apagar () {
 	  digitalWrite(numeroLED, LOW);
 	  encendido = false;
@@ -47,6 +62,10 @@ public:
 
   // .........................................................
   // .........................................................
+  /**
+ * La descripción de alternar. Funcion apaga o enciende la placa.
+ *
+ */
   void alternar () {
 	if (encendido) {
 	  apagar();
@@ -57,6 +76,12 @@ public:
 
   // .........................................................
   // .........................................................
+   /**
+ * La descripción de brillar. Funcion que apaga y enciende la placa con un retraso del tiempo que le pasamos a la funcion.
+ * 
+ * @param tiempo valor long.
+ *
+ */
   void brillar (long tiempo) {
 	encender ();
 	esperar(tiempo); 
