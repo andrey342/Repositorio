@@ -1,9 +1,12 @@
 // -*- mode: c++ -*-
 
-// ----------------------------------------------------------
-// Jordi Bataller i Mascarell
-// 2019-07-17
-// ----------------------------------------------------------
+// --------------------------------------------------------------
+//
+// Andrey Kuzmin
+// 2021-18-09
+//
+// --------------------------------------------------------------
+
 #ifndef SERVICIO_EMISORA_H_INCLUIDO
 #define SERVICIO_EMISORA_H_INCLUIDO
 
@@ -29,6 +32,15 @@ T *  alReves( T * p, int n ) {
 
 // ----------------------------------------------------
 // ----------------------------------------------------
+/**
+ * La descripción de stringAUint8AlReves. Funcion que pone al reves un string
+ *
+ * @param pString string.
+ * @param pUint int.
+ * @param tam tmanyo
+ *
+ * @returns int.
+ */
 uint8_t * stringAUint8AlReves( const char * pString, uint8_t * pUint, int tamMax ) {
 
 	int longitudString =  strlen( pString );
@@ -101,6 +113,12 @@ public:
 	// .........................................................
 	// CHR_PROPS_WRITE , CHR_PROPS_READ ,  CHR_PROPS_NOTIFY 
 	// .........................................................
+  /**
+ * La descripción de asignarPropiedades. Funcion que asigna propiedades.
+ *
+ * @param props int
+ *
+ */
 	void asignarPropiedades ( uint8_t props ) {
 	  // no puedo escribir AUN si el constructor llama a esto: Serial.println( " laCaracteristica.setProperties( props ); ");
 	  (*this).laCaracteristica.setProperties( props );

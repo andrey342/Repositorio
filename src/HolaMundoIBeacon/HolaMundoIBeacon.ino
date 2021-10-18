@@ -2,8 +2,8 @@
 
 // --------------------------------------------------------------
 //
-// Jordi Bataller i Mascarell
-// 2019-07-07
+// Andrey Kuzmin
+// 2021-18-09
 //
 // --------------------------------------------------------------
 
@@ -97,6 +97,10 @@ void setup() {
 
 // --------------------------------------------------------------
 // --------------------------------------------------------------
+/**
+ * La descripción de lucecitas. Funcion que programa el led para que se encienda y apague cada cierto tiempo
+ *
+ */
 inline void lucecitas() {
   using namespace Globales;
 

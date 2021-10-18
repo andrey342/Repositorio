@@ -1,7 +1,10 @@
 // -*- mode: c++ -*-
 
 // --------------------------------------------------------------
-// Jordi Bataller i Mascarell
+//
+// Andrey Kuzmin
+// 2021-18-09
+//
 // --------------------------------------------------------------
 
 #ifndef PUBLICADOR_H_INCLUIDO
@@ -52,12 +55,26 @@ public:
 
   // ............................................................
   // ............................................................
+
+  /**
+ * La descripción de encenderEmisora. Funcion que enciende la emisora.
+ *
+ */
   void encenderEmisora() {
 	(*this).laEmisora.encenderEmisora();
   } // ()
 
   // ............................................................
   // ............................................................
+
+  /**
+ * La descripción de publicarCO2. Funcion que publica la medida de co2.
+ *
+ * @param valorCO2 medida de co2.
+ * @param contador int contador.
+ * @param tiempoEspera tiempo de espera hasta la proxima medicion.
+ *
+ */
   void publicarCO2( int16_t valorCO2, uint8_t contador,
 					long tiempoEspera ) {
 
@@ -94,6 +111,14 @@ public:
 
   // ............................................................
   // ............................................................
+  /**
+ * La descripción de publicarTemperatura. Funcion que publica la medida de temperatura.
+ *
+ * @param valorTemperatura medida de co2.
+ * @param contador int contador.
+ * @param tiempoEspera tiempo de espera hasta la proxima medicion.
+ *
+ */
   void publicarTemperatura( int16_t valorTemperatura,
 							uint8_t contador, long tiempoEspera ) {
 
