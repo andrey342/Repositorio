@@ -23,4 +23,6 @@ https://trello.com/invite/b/tqvHxuCU/b01d6526fafdc5cade3ccfdd9cae404f/gti-3a-kuz
 
 //------------ Información de la aplicación  ---------------------------
 
+Asegúrese de que las librerías necesarias están instaladas.
+
 //---------------------------------------

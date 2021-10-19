@@ -1,7 +1,10 @@
 // -*- mode: c++ -*-
 
 // --------------------------------------------------------------
-// Jordi Bataller i Mascarell
+//
+// Andrey Kuzmin
+// 2021-18-09
+//
 // --------------------------------------------------------------
 
 #ifndef PUBLICADOR_H_INCLUIDO
@@ -24,7 +27,7 @@ private:
   // ............................................................
 public:
   EmisoraBLE laEmisora {
-	"GTI-3A", //  nombre emisora
+	"Andrey-Kuzmin-G3A", //  nombre emisora
 	  0x004c, // fabricanteID (Apple)
 	  4 // txPower
 	  };
@@ -52,19 +55,33 @@ public:
 
   // ............................................................
   // ............................................................
+
+  /**
+ * La descripción de encenderEmisora. Funcion que enciende la emisora.
+ *
+ */
   void encenderEmisora() {
 	(*this).laEmisora.encenderEmisora();
   } // ()
 
   // ............................................................
   // ............................................................
+
+  /**
+ * La descripción de publicarCO2. Funcion que publica la medida de co2.
+ *
+ * @param valorCO2 medida de co2.
+ * @param contador int contador.
+ * @param tiempoEspera tiempo de espera hasta la proxima medicion.
+ *
+ */
   void publicarCO2( int16_t valorCO2, uint8_t contador,
 					long tiempoEspera ) {
 
 	//
 	// 1. empezamos anuncio
-	//
-	uint16_t major = (MedicionesID::CO2 << 8) + contador;
+	//uint16_t major = (MedicionesID::CO2 << 8) + contador;
+	uint16_t major = MedicionesID::CO2;
 	(*this).laEmisora.emitirAnuncioIBeacon( (*this).beaconUUID, 
 											major,
 											valorCO2, // minor
@@ -94,10 +111,19 @@ public:
 
   // ............................................................
   // ............................................................
+  /**
+ * La descripción de publicarTemperatura. Funcion que publica la medida de temperatura.
+ *
+ * @param valorTemperatura medida de co2.
+ * @param contador int contador.
+ * @param tiempoEspera tiempo de espera hasta la proxima medicion.
+ *
+ */
   void publicarTemperatura( int16_t valorTemperatura,
 							uint8_t contador, long tiempoEspera ) {
 
-	uint16_t major = (MedicionesID::TEMPERATURA << 8) + contador;
+	//uint16_t major = (MedicionesID::TEMPERATURA << 8) + contador;
+  uint16_t major = MedicionesID::TEMPERATURA;
 	(*this).laEmisora.emitirAnuncioIBeacon( (*this).beaconUUID, 
 											major,
 											valorTemperatura, // minor

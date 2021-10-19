@@ -1,9 +1,11 @@
 // -*- mode: c++ -*-
 
-// ----------------------------------------------------------
-// Jordi Bataller i Mascarell
-// 2019-07-07
-// ----------------------------------------------------------
+// --------------------------------------------------------------
+//
+// Andrey Kuzmin
+// 2021-18-09
+//
+// --------------------------------------------------------------
 #ifndef EMISORA_H_INCLUIDO
 #define EMISORA_H_INCLUIDO
 
@@ -72,6 +74,10 @@ public:
 	
   // .........................................................
   // .........................................................
+  /**
+ * La descripción de encenderEmisora. Funcion que inicializa la emisora.
+ *
+ */
   void encenderEmisora() {
 	// Serial.println ( "Bluefruit.begin() " );
 	 Bluefruit.begin(); 
@@ -82,6 +88,13 @@ public:
 
   // .........................................................
   // .........................................................
+  /**
+ * La descripción de encenderEmisora. Funcion que inicializa la emisora.
+ *
+ * @param cbce callback donde guardamos la variable
+ * @param cbct callback donde guardamos la variable.
+ *
+ */
   void encenderEmisora( CallbackConexionEstablecida cbce,
 						CallbackConexionTerminada cbct ) {
 
@@ -94,6 +107,10 @@ public:
 
   // .........................................................
   // .........................................................
+  /**
+ * La descripción de detenerAnuncio. Funcion que detiene el anuncio de Bluetooth.
+ *
+ */
   void detenerAnuncio() {
 
 	if ( (*this).estaAnunciando() ) {
@@ -106,12 +123,26 @@ public:
   // .........................................................
   // estaAnunciando() -> Boleano
   // .........................................................
+  /**
+ * La descripción de estaAnunciando. Funcion que comprueba que la emisora esta encendida o no.
+ *
+ * @returns bool , true si esta inicializado el emisor.
+ */
   bool estaAnunciando() {
 	return Bluefruit.Advertising.isRunning();
   } // ()
 
   // .........................................................
   // .........................................................
+  /**
+ * La descripción de emitirAnuncioIBeacon. Funcion que emite el beacon con sus datos que le pasamos
+ *
+ * @param beaconUUID datos uuid del beacon.
+ * @param major valor major (11 -> c02 , 12 -> temperatura) del beacon
+ * @param minor Medicion del beacon.
+ * @param rssi Dato rssi del beacon.
+ *
+ */
   void emitirAnuncioIBeacon( uint8_t * beaconUUID, int16_t major, int16_t minor, uint8_t rssi ) {
 
 	//
@@ -200,6 +231,14 @@ public:
 
 	const uint8_t tamanyoCarga = strlen( carga );
   */
+
+  /**
+ * La descripción de emitirAnuncioIBeaconLibre. Funcion que emite beacon.
+ *
+ * @param carga datos de la carga
+ * @param tamanyoCarga tamanyo de la carga.
+ *
+ */
   void emitirAnuncioIBeaconLibre( const char * carga, const uint8_t tamanyoCarga ) {
 
 	(*this).detenerAnuncio(); 
@@ -262,6 +301,13 @@ public:
 
   // .........................................................
   // .........................................................
+   /**
+ * La descripción de anyadirServicio. Funcion que anyade servicio al bluetooth.
+ *
+ * @param servicio puntero.
+ *
+ * @returns bool , true o false si el servicio se ha anyadido correctamente.
+ */
   bool anyadirServicio( ServicioEnEmisora & servicio ) {
 
 	Globales::elPuerto.escribir( " Bluefruit.Advertising.addService( servicio ); \n");
@@ -281,11 +327,27 @@ public:
   
   // .........................................................
   // .........................................................
+   /**
+ * La descripción de anyadirServicioConSusCaracteristicas. Funcion que anyade servicio con datos adicionales.
+ *
+ * @param servicio Puntero.
+ *
+ * @returns bool , true o false si se ha anyadido correctamente.
+ */
   bool anyadirServicioConSusCaracteristicas( ServicioEnEmisora & servicio ) { 
 	return (*this).anyadirServicio( servicio );
   } // 
 
   // .........................................................
+   /**
+ * La descripción de anyadirServicioConSusCaracteristicas. Funcion que anyade servicio con datos adicionales.
+ *
+ * @param servicio Puntero.
+ * @param caracteristica Puntero.
+ * ...
+ *
+ * @returns bool , true o false si se ha anyadido correctamente.
+ */
   template <typename ... T>
   bool anyadirServicioConSusCaracteristicas( ServicioEnEmisora & servicio,
 											 ServicioEnEmisora::Caracteristica & caracteristica,
@@ -298,6 +360,14 @@ public:
   } // ()
 
   // .........................................................
+   /**
+ * La descripción de anyadirServicioConSusCaracteristicasYActivar. Funcion que anyade servicio con sus datos y lo activa.
+ *
+ * @param servicio Puntero.
+ * @param caracteristica Puntero.
+ *
+ * @returns bool , true si se ha hecho correctamente. 
+ */
   template <typename ... T>
   bool anyadirServicioConSusCaracteristicasYActivar( ServicioEnEmisora & servicio,
 													 // ServicioEnEmisora::Caracteristica & caracteristica,
@@ -313,12 +383,22 @@ public:
 
   // .........................................................
   // .........................................................
+   /**
+ * La descripción de instalarCallbackConexionEstablecida. Funcion que instala callback a la emisora.
+ *
+ * @param cb callback donde guardamos el valor.
+ */
   void instalarCallbackConexionEstablecida( CallbackConexionEstablecida cb ) {
 	Bluefruit.Periph.setConnectCallback( cb );
   } // ()
 
   // .........................................................
   // .........................................................
+    /**
+ * La descripción de instalarCallbackConexionTerminada. Funcion que instala callback a la emisora.
+ *
+ * @param cb callback donde guardamos el valor.
+ */
   void instalarCallbackConexionTerminada( CallbackConexionTerminada cb ) {
 	Bluefruit.Periph.setDisconnectCallback( cb );
   } // ()
@@ -337,4 +417,3 @@ public:
 // ----------------------------------------------------------
 // ----------------------------------------------------------
 // ----------------------------------------------------------
-
